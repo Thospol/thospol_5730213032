@@ -6,7 +6,7 @@ Group by Dep_id;
 
 2.จงหาข้อมูลพนักงานทุกคนเรียงตามแผนกถ้าคนที่ไม่มีแผนกให้แสดงข้อความว่า “ไม่มีแผนก” ที่คอมลัมชื่อแผนก
 select Employee.Empid, Employee .First_Empname, Employee.Last_Empname,
-Employee.Emp_Brithday, Employee.Emp_Age, Employee.Emp_Tel , case depname when isnull then ‘ไม่มีแผนก’ else department.depname
+Employee.Emp_Brithday, Employee.Emp_Age, Employee.Emp_Tel , case depname when isnull then ‘ไม่มีแผนก’ else department.depname end
 from Employee,department
 where Employee.Depid = department.Depid
 
