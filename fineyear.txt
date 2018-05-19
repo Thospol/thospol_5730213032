@@ -1,0 +1,19 @@
+ public ActionResult Yearselect()
+        {
+            int SY = 2500 - 543;
+            int EY = 2600 -543;
+            int count = 0;
+            for(int Yeap = SY; Yeap<= EY; Yeap++)
+            {
+                DateTime dd = new DateTime(Yeap,1,1);
+                var sat = Enumerable.Range(0, 31).Where(x => dd.AddDays(x).DayOfWeek == DayOfWeek.Saturday).Count();
+                var sun = Enumerable.Range(0, 31).Where(x => dd.AddDays(x).DayOfWeek == DayOfWeek.Sunday).Count();
+                var mon = Enumerable.Range(0, 31).Where(x => dd.AddDays(x).DayOfWeek == DayOfWeek.Monday).Count();
+                if(sat == 5  && sun == 5 && mon == 5)
+                {
+                    ViewBag.Viewyear += Yeap+ " ";
+                    count += 1;
+                    ViewBag.Count = count;
+                }
+               
+            }
