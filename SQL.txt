@@ -1,0 +1,25 @@
+1.จงหาจำนวนคนแต่ละแผนก
+Select Count(Emp_id) 
+from Employee,Department 
+where Employee.Emp_id = Department.Emp_id
+Group by Dep_id;
+
+2.จงหาข้อมูลพนักงานทุกคนเรียงตามแผนกถ้าคนที่ไม่มีแผนกให้แสดงข้อความว่า “ไม่มีแผนก” ที่คอมลัมชื่อแผนก
+select Employee.Empid, Employee .First_Empname, Employee.Last_Empname,
+Employee.Emp_Brithday, Employee.Emp_Age, Employee.Emp_Tel , case depname when isnull then ‘ไม่มีแผนก’ else department.depname
+from Employee,department
+where Employee.Depid = department.Depid
+
+
+
+3.จงหาข้อมูลหัวหน้าแผนกแต่ละแผนก
+Select  Employee.Empid, Employee .First_Empname, Employee.Last_Empname,Employee.Emp_Brithday, Employee.Emp_Age, Employee.Emp_Tel, .Level.Levname
+From Employee, Level
+Where Employee.Empid = Level.Empid and Level.Levname = ‘Managerdepartment’;
+
+4. หาหัวหน้าแผนกของแผนกที่จำนวนคนเยอะที่สุด
+Select Max(empid),Employee.Empname
+from (select Count(empid) 
+from employee 
+group by depid ) 
+where Employee.depid = department.depid  and Employee.Empid = Level.Empid and Level.Levname = ‘Managerdepartment’;
