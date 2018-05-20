@@ -1,25 +1,29 @@
+SQL
 1.จงหาจำนวนคนแต่ละแผนก
-Select Count(Emp_id) 
-from Employee,Department 
-where Employee.Emp_id = Department.Emp_id
-Group by Dep_id;
+select DepartmentName,COUNT(Employees.EmployeeID) 
+from Employees,Departments
+where Employees.departmentID =  Departments.departmentID
+group by DepartmentName;
 
 2.จงหาข้อมูลพนักงานทุกคนเรียงตามแผนกถ้าคนที่ไม่มีแผนกให้แสดงข้อความว่า “ไม่มีแผนก” ที่คอมลัมชื่อแผนก
-select Employee.Empid, Employee .First_Empname, Employee.Last_Empname,
-Employee.Emp_Brithday, Employee.Emp_Age, Employee.Emp_Tel , case depname when isnull then ‘ไม่มีแผนก’ else department.depname end
-from Employee,department
-where Employee.Depid = department.Depid
+select case DepartmentName when isnull then 'ไม่มีแผนก' else DepartmentName end  ,EmployeeID,Fname,Lname,Brithday,age,Tel
+from Employees,Departments
+where Employees.departmentID = Departments.departmentID
+order by DepartmentName asc;
 
+3. จงหาข้อมูลหัวหน้าแผนกแต่ละแผนก
+select DepartmentName,LevelName,EmployeeID,Fname,Lname,Brithday,age,Tel
+from Employees,Departments,Levels
+where Employees.departmentID = Departments.departmentID 
+and Levels.LevelID = Employees.LevelID 
+and LevelName = 'PM'
+order by DepartmentName asc;
 
-
-3.จงหาข้อมูลหัวหน้าแผนกแต่ละแผนก
-Select  Employee.Empid, Employee .First_Empname, Employee.Last_Empname,Employee.Emp_Brithday, Employee.Emp_Age, Employee.Emp_Tel, .Level.Levname
-From Employee, Level
-Where Employee.Empid = Level.Empid and Level.Levname = ‘Managerdepartment’;
-
-4. หาหัวหน้าแผนกของแผนกที่จำนวนคนเยอะที่สุด
-Select Max(empid),Employee.Empname
-from (select Count(empid) 
-from employee 
-group by depid ) 
-where Employee.depid = department.depid  and Employee.Empid = Level.Empid and Level.Levname = ‘Managerdepartment’;
+4. หาหัวหน้าแผนก ของแผนกแต่ละแผนกที่จำนวนคนมากที่สุด
+select Fname
+from Employees,Departments,Levels
+where Employees.departmentID = Departments.departmentID 
+and Levels.LevelID = Employees.LevelID 
+and LevelName = 'PM'
+group by Fname
+having Count(EmployeeID) = MAX(EmployeeID);
