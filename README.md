@@ -1,4 +1,6 @@
 ![image](https://www.img.in.th/images/43786daea07df32abdd38bb4ac6fe492.png)
+
+
 SQL
 1.จงหาจำนวนคนแต่ละแผนก
 select DepartmentName,COUNT(Employees.EmployeeID) 
