@@ -15,7 +15,19 @@ int Ystart = 2500 - 543;
                     ViewBag.counting = count;
                 }
             }
+---------------------------------------------------------------            
+             int sYe = 2500 - 543;
+            int eYe = 2600 - 543;
+            for (int YY = sYe; YY < eYe; YY++)
+            {
+                DateTime dd = new DateTime(YY, 1, 1);
+                 if((int)dd.DayOfWeek == 6)
+                {
+                    ViewBag.datayear += YY + 543+" " ;
 
+                }
+            }
+--------------------------------------------------------------
 ![image](https://www.img.in.th/images/43786daea07df32abdd38bb4ac6fe492.png)
 
 
