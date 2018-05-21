@@ -1,3 +1,21 @@
+หาปีที่มีวันเสาร์ วันจันทร์ วันอาทิตย์ที่มี 5วันในเดือนมกราคม
+int Ystart = 2500 - 543;
+            int Yend = 2600 - 543;
+            int count = 0;
+            for (int y = Ystart; y <= Yend; y++)
+            {
+                DateTime date = new DateTime(y, 1, 1);
+                var sat = Enumerable.Range(0, 31).Where(x => date.AddDays(x).DayOfWeek == DayOfWeek.Saturday).Count();
+                var sun = Enumerable.Range(0, 31).Where(x => date.AddDays(x).DayOfWeek == DayOfWeek.Sunday).Count();
+                var mon = Enumerable.Range(0, 31).Where(x => date.AddDays(x).DayOfWeek == DayOfWeek.Monday).Count();
+                if(sat == 5 && sun == 5 && mon == 5)
+                {
+                    ViewBag.yearselect += y +543+ " ";
+                    count += 1;
+                    ViewBag.counting = count;
+                }
+            }
+
 ![image](https://www.img.in.th/images/43786daea07df32abdd38bb4ac6fe492.png)
 
 
