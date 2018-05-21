@@ -48,3 +48,13 @@ and Levels.LevelID = Employees.LevelID
 and LevelName = 'PM'
 group by Fname
 having Count(EmployeeID) = MAX(EmployeeID);
+
+
+
+select TOP 1 e.FName,l.LevelName, d.departmentName,COUNT(e.EmployeeID)as countemployee
+from Employees e, Departments d,Levels l
+where d.DepartmentID = e.DepartmentID 
+and  e.LevelID = l.LevelID 
+and l.LevelName = 'PM' 
+group by FName,LevelName,departmentName
+order by countemployee DESC;
